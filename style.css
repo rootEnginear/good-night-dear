@@ -1,0 +1,9 @@
+html,
+p,
+a,
+button,
+textarea,
+h1 {
+  font-family: "Mali", cursive;
+  line-height: 1.7;
+}

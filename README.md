@@ -1,0 +1,4 @@
+# Good night, dear.
+Maybe, Skoy bedtime story is not okay for your kids.
+
+This was originally submitted to [Noobtoberfest](https://github.com/chunza2542/noobtoberfest), a one-html-file game making contest for a [Hacktoberfest Open Hack Day BKK 2019](https://www.facebook.com/events/522162471684850/) community ticket. In this game, you have to translate (I mean, transcribe) from Skoy language into Thai. Skoy language is basically a broken Thai language with lots of jumbled up characters, so the real word is substituted and obfuscated with new letters, which can be lookalike appearance, same sound, or just a group of muted letters.
