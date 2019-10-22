@@ -1,12 +1,14 @@
-let app = new Vue({
+var app = new Vue({
   el: "#app",
   mounted: function() {
-    axios.get("assets/story.txt").then(res => {
-      this.data = res.data.split(" ");
-      this.dataLength = this.data.length;
-      this.isLoading = false;
-      this.generateStory();
-    });
+    axios.get("assets/story.txt").then(
+      function(res) {
+        this.data = res.data.split(" ");
+        this.dataLength = this.data.length;
+        this.isLoading = false;
+        this.generateStory();
+      }.bind(this)
+    );
   },
   data: function() {
     return {
@@ -34,7 +36,7 @@ let app = new Vue({
       this.$refs[ref].click();
     },
     generateStory: function() {
-      let startingIndex = Math.floor(
+      var startingIndex = Math.floor(
         Math.random() * (this.dataLength - this.storyLength)
       );
       this.currentStory = this.data
@@ -43,7 +45,7 @@ let app = new Vue({
       this.userTranslation = "";
     },
     checkStory: function() {
-      let storyDifferences = Diff.diffChars(
+      var storyDifferences = Diff.diffChars(
           this.currentStory,
           this.userTranslation.trim().replace(/\s+/g, " ")
         ),
