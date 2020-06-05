@@ -109,6 +109,10 @@
               >{{ modalPercentage }}%</span
             ></section
           >
+          <section v-if="modalPercentage>0&&modalPercentage<100">
+            <div style="font-weight:bold">เนื้อเรื่องภาษาสก๊อย:</div>
+            <p class="modal-text">{{skoyStory}}</p>
+          </section>
           <section>
             <div style="font-weight:bold">เนื้อเรื่องจริง:</div>
             <p class="modal-text" v-html="modalContentCorrent"></p>
