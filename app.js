@@ -12,6 +12,7 @@ var app = new Vue({
   },
   data: function() {
     return {
+      skoy: new Skoy(),
       isLoading: true,
       // Data
       data: "",
@@ -28,7 +29,7 @@ var app = new Vue({
   },
   computed: {
     skoyStory: function() {
-      return this.currentStory.toSkoy();
+      return this.skoy.convert(this.currentStory);
     }
   },
   methods: {
