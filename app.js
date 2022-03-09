@@ -1,14 +1,14 @@
 var app = new Vue({
   el: "#app",
   mounted: function() {
-    axios.get("assets/story.txt").then(
-      function(res) {
-        this.data = res.data.split(" ");
-        this.dataLength = this.data.length;
-        this.isLoading = false;
-        this.generateStory();
-      }.bind(this)
-    );
+    fetch("./assets/story.txt").then(
+      res => res.text()
+    ).then(text => {
+      this.data = text.split(" ");
+      this.dataLength = this.data.length;
+      this.isLoading = false;
+      this.generateStory();
+    });
   },
   data: function() {
     return {
