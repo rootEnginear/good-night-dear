@@ -63,7 +63,7 @@
   <div id="app" class="paper container border border-primary border-2">
     <!-- HEADER -->
     <header style="text-align:center">
-      <h1 style="margin:0">🌙 Good night, dear.</h1>
+      <h1 style="margin:0">🌙&#xFE0F; Good night, dear.</h1>
       <p style="margin:0">
         วิธีเล่น: ให้พิมพ์ข้อความบางส่วนจากนิทานภาษาสก๊อยให้เป็นภาษาไทยให้ถูกต้อง
       </p>
@@ -87,7 +87,7 @@
       <div class="row">
         <div class="col-fill col" style="padding:0">
           <button class="border-5" @click="generateStory" :disabled="isLoading">
-            🔄 เปลี่ยนโจทย์
+            🔄&#xFE0F; เปลี่ยนโจทย์
           </button>
         </div>
         <div class="col-fill col" style="padding:0;text-align:center">
@@ -97,7 +97,7 @@
         </div>
         <div class="col-fill col" style="padding:0;text-align:right">
           <button class="border-6" @click="checkStory" :disabled="isLoading">
-            ตรวจคำตอบ ✅
+            ตรวจคำตอบ ✅&#xFE0F;
           </button>
         </div>
       </div>
@@ -127,7 +127,7 @@
           <p class="modal-text" v-html="modalContentInput"></p>
         </section>
         <section style="text-align:center">
-          <button class="border-2" @click="newStory">📃 ลองเรื่องใหม่</button>
+          <button class="border-2" @click="newStory">📃&#xFE0F; ลองเรื่องใหม่</button>
         </section>
       </div>
     </div>
@@ -138,33 +138,53 @@
       <div class="modal-body border border-6" style="border-color:#41403e">
         <span class="btn-close" @click="toggleAboutModal">X</span>
         <b>สรรค์สร้างความปวดหัวโดย:
-          <a href="https://github.com/rootEnginear">rootEnginear</a></b>
+          <a href="https://github.com/rootEnginear" target="_blank"
+            rel="nofollow noopener noreferrer">
+            rootEnginear
+          </a>
+        </b>
         <br />
         <b>Resources:</b>
         <ul style="margin:0;padding-left:1ch">
           <li>
-            <a href="http://www.kalyanamitra.org/th/Aesop_list.php">นิทานอีสปสอนใจ</a>
+            <a href="http://www.kalyanamitra.org/th/Aesop_list.php" target="_blank"
+              rel="nofollow noopener noreferrer">
+              นิทานอีสปสอนใจ
+            </a>
           </li>
           <li>
-            <a href="https://www.getpapercss.com/">PaperCSS</a>
+            <a href="https://www.getpapercss.com/" target="_blank"
+              rel="nofollow noopener noreferrer">
+              PaperCSS
+            </a>
           </li>
           <li>
-            <a href="https://fonts.google.com/specimen/Mali">Mali - Google Fonts</a>
+            <a href="https://fonts.google.com/specimen/Mali" target="_blank"
+              rel="nofollow noopener noreferrer">
+              Mali - Google Fonts
+            </a>
           </li>
           <li>
-            <a href="https://vuejs.org/">Vue.js</a>
+            <a href="https://vuejs.org/" target="_blank"
+              rel="nofollow noopener noreferrer">
+              Vue.js
+            </a>
           </li>
           <li>
-            <a href="https://github.com/axios/axios">axios</a>
+            <a href="https://github.com/narze/toSkoy" target="_blank"
+              rel="nofollow noopener noreferrer">
+              toSkoy
+            </a>
           </li>
           <li>
-            <a href="https://github.com/narze/toSkoy">toSkoy</a>
+            <a href="https://github.com/kpdecker/jsdiff" target="_blank"
+              rel="nofollow noopener noreferrer">
+              jsdiff
+            </a>
           </li>
           <li>
-            <a href="https://github.com/kpdecker/jsdiff">jsdiff</a>
-          </li>
-          <li>
-            <a href="https://www.freepik.com/free-photos-vectors/background">
+            <a href="https://www.freepik.com/free-photos-vectors/background"
+              target="_blank" rel="nofollow noopener noreferrer">
               Background vector created by rawpixel.com
             </a>
           </li>
