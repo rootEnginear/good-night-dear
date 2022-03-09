@@ -6,7 +6,7 @@ const _game = Vue.createApp({
 		const skoy = ref(new Skoy())
 		const isLoading = ref(true)
 		const data = ref('')
-		const storyLength = ref(5)
+		const storyLength = ref(225)
 		const currentStory = ref('')
 		const userTranslation = ref('')
 		const modalContentCorrent = ref('')
@@ -35,10 +35,21 @@ const _game = Vue.createApp({
 			aboutModal.value.click()
 		}
 		const generateStory = () => {
-			const startingIndex = Math.floor(Math.random() * (dataLength.value - storyLength.value))
-			currentStory.value = data.value
-				.slice(startingIndex, startingIndex + storyLength.value)
-				.join(' ')
+			const startingIndex = Math.floor(Math.random() * (dataLength.value - 10))
+
+			let story = data.value[startingIndex]
+			let nextStory = `${story} ${data.value[startingIndex + 1]}`
+
+			let i = 2
+			let retried = 0
+			while (nextStory.length < storyLength.value) {
+				story = nextStory
+				nextStory += ` ${data.value[startingIndex + i++]}`
+
+				/* catch unknown infinite loop */
+				if (retried++ > 50) break
+			}
+			currentStory.value = story
 			userTranslation.value = ''
 		}
 		const checkStory = () => {
