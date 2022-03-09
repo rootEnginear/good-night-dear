@@ -1,11 +1,10 @@
-var app = new Vue({
+var _game = new Vue({
 	el: '#app',
 	mounted: function () {
 		fetch('./assets/story.txt')
 			.then((res) => res.text())
 			.then((text) => {
 				this.data = text.split(' ')
-				this.dataLength = this.data.length
 				this.isLoading = false
 				this.generateStory()
 			})
@@ -16,7 +15,6 @@ var app = new Vue({
 			isLoading: true,
 			// Data
 			data: '',
-			dataLength: 0,
 			// Story
 			storyLength: 5,
 			currentStory: 'กำลังโหลด...',
@@ -28,8 +26,19 @@ var app = new Vue({
 		}
 	},
 	computed: {
+		dataLength: function () {
+			return this.data.length
+		},
 		skoyStory: function () {
 			return this.skoy.convert(this.currentStory)
+		},
+		modalPercentageColor: function () {
+			return {
+				color: ['red', 'orange', 'green', 'green'][Math.floor(this.modalPercentage / (100 / 3))],
+			}
+		},
+		modalPercentageShowOriginal: function () {
+			return this.modalPercentage > 0 && this.modalPercentage < 100
 		},
 	},
 	methods: {
@@ -44,7 +53,7 @@ var app = new Vue({
 		checkStory: function () {
 			var storyDifferences = Diff.diffChars(
 					this.currentStory,
-					this.userTranslation.trim().replace(/\s+/g, ' ')
+					this.userTranslation.replace(/\s+/g, ' ')
 				),
 				diffReal = '',
 				diffInput = '',
