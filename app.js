@@ -1,61 +1,52 @@
-var _game = new Vue({
-	el: '#app',
-	mounted: function () {
-		fetch('./assets/story.txt')
-			.then((res) => res.text())
-			.then((text) => {
-				this.data = text.split(' ')
-				this.isLoading = false
-				this.generateStory()
-			})
-	},
-	data: function () {
-		return {
-			skoy: new Skoy(),
-			isLoading: true,
-			// Data
-			data: '',
-			// Story
-			storyLength: 5,
-			currentStory: 'กำลังโหลด...',
-			userTranslation: '',
-			// Modal
-			modalContentCorrent: '',
-			modalContentInput: '',
-			modalPercentage: 0.0,
+const { ref, computed, onMounted } = Vue
+
+const _game = Vue.createApp({
+	setup() {
+		// DATA
+		const skoy = ref(new Skoy())
+		const isLoading = ref(true)
+		const data = ref('')
+		const storyLength = ref(5)
+		const currentStory = ref('')
+		const userTranslation = ref('')
+		const modalContentCorrent = ref('')
+		const modalContentInput = ref('')
+		const modalPercentage = ref(0.0)
+
+		// REFS
+		const solutionModal = ref(null)
+		const aboutModal = ref(null)
+
+		// COMPUTED
+		const dataLength = computed(() => data.value.length)
+		const skoyStory = computed(() => skoy.value.convert(currentStory.value))
+		const modalPercentageColor = computed(() => ({
+			color: ['red', 'orange', 'green', 'green'][Math.floor(modalPercentage.value / (100 / 3))],
+		}))
+		const modalPercentageShowOriginal = computed(
+			() => modalPercentage.value > 0 && modalPercentage.value < 100
+		)
+
+		// METHODS
+		const toggleSolutionModal = () => {
+			solutionModal.value.click()
 		}
-	},
-	computed: {
-		dataLength: function () {
-			return this.data.length
-		},
-		skoyStory: function () {
-			return this.skoy.convert(this.currentStory)
-		},
-		modalPercentageColor: function () {
-			return {
-				color: ['red', 'orange', 'green', 'green'][Math.floor(this.modalPercentage / (100 / 3))],
-			}
-		},
-		modalPercentageShowOriginal: function () {
-			return this.modalPercentage > 0 && this.modalPercentage < 100
-		},
-	},
-	methods: {
-		toggleModal: function (ref) {
-			this.$refs[ref].click()
-		},
-		generateStory: function () {
-			var startingIndex = Math.floor(Math.random() * (this.dataLength - this.storyLength))
-			this.currentStory = this.data.slice(startingIndex, startingIndex + this.storyLength).join(' ')
-			this.userTranslation = ''
-		},
-		checkStory: function () {
-			var storyDifferences = Diff.diffChars(
-					this.currentStory,
-					this.userTranslation.replace(/\s+/g, ' ')
-				),
-				diffReal = '',
+		const toggleAboutModal = () => {
+			aboutModal.value.click()
+		}
+		const generateStory = () => {
+			const startingIndex = Math.floor(Math.random() * (dataLength.value - storyLength.value))
+			currentStory.value = data.value
+				.slice(startingIndex, startingIndex + storyLength.value)
+				.join(' ')
+			userTranslation.value = ''
+		}
+		const checkStory = () => {
+			const storyDifferences = Diff.diffChars(
+				currentStory.value,
+				userTranslation.value.replace(/\s+/g, ' ')
+			)
+			let diffReal = '',
 				diffInput = '',
 				charLength = 0,
 				charCorrect = 0
@@ -72,14 +63,45 @@ var _game = new Vue({
 					charLength += part.value.length
 				}
 			})
-			this.modalContentCorrent = diffReal
-			this.modalContentInput = diffInput
-			this.modalPercentage = Math.round((charCorrect / charLength) * 1e4) / 1e2
-			this.toggleModal('solutionModal')
-		},
-		newStory: function () {
-			this.generateStory()
-			this.toggleModal('solutionModal')
-		},
+			modalContentCorrent.value = diffReal
+			modalContentInput.value = diffInput
+			modalPercentage.value = Math.round((charCorrect / charLength) * 1e4) / 1e2
+			toggleSolutionModal()
+		}
+		const newStory = () => {
+			generateStory()
+			toggleSolutionModal()
+		}
+
+		// ON MOUNTED
+		onMounted(() => {
+			fetch('./assets/story.txt')
+				.then((res) => res.text())
+				.then((text) => {
+					data.value = text.split(' ')
+					isLoading.value = false
+					generateStory()
+				})
+		})
+
+		return {
+			isLoading,
+			generateStory,
+
+			skoyStory,
+			userTranslation,
+
+			checkStory,
+			solutionModal,
+			modalPercentageColor,
+			modalPercentage,
+			modalPercentageShowOriginal,
+			modalContentCorrent,
+			modalContentInput,
+			newStory,
+
+			aboutModal,
+			toggleAboutModal,
+		}
 	},
-})
+}).mount('#app')

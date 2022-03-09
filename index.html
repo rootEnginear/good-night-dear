@@ -64,8 +64,9 @@
     <!-- HEADER -->
     <header style="text-align:center">
       <h1 style="margin:0">🌙 Good night, dear.</h1>
-      <p style="margin:0">วิธีเล่น:
-        ให้พิมพ์ข้อความบางส่วนจากนิทานภาษาสก๊อยให้เป็นภาษาไทยให้ถูกต้อง</p>
+      <p style="margin:0">
+        วิธีเล่น: ให้พิมพ์ข้อความบางส่วนจากนิทานภาษาสก๊อยให้เป็นภาษาไทยให้ถูกต้อง
+      </p>
     </header>
     <br />
     <!-- SKOY STORY -->
@@ -85,18 +86,19 @@
       <!-- BUTTONS -->
       <div class="row">
         <div class="col-fill col" style="padding:0">
-          <button class="border-5" @click="generateStory" :disabled="isLoading">🔄
-            เปลี่ยนโจทย์</button>
+          <button class="border-5" @click="generateStory" :disabled="isLoading">
+            🔄 เปลี่ยนโจทย์
+          </button>
         </div>
         <div class="col-fill col" style="padding:0;text-align:center">
-          <button
-            class="border-2"
-            @click="toggleModal('aboutModal')"
-            :disabled="isLoading">เกี่ยวกับผู้ทำ</button>
+          <button class="border-2" @click="toggleAboutModal" :disabled="isLoading">
+            เกี่ยวกับผู้ทำ
+          </button>
         </div>
         <div class="col-fill col" style="padding:0;text-align:right">
-          <button class="border-6" @click="checkStory" :disabled="isLoading">ตรวจคำตอบ
-            ✅</button>
+          <button class="border-6" @click="checkStory" :disabled="isLoading">
+            ตรวจคำตอบ ✅
+          </button>
         </div>
       </div>
     </section>
@@ -106,10 +108,11 @@
     <div class="modal">
       <div class="modal-bg"></div>
       <div class="modal-body border border-3" style="border-color:#41403e">
-        <section style="font-weight:bold;text-align:center;font-size:2rem">คุณแปลถูก:
-          <span
-            :style="modalPercentageColor">{{
-            modalPercentage }}%</span>
+        <section style="font-weight:bold;text-align:center;font-size:2rem">
+          คุณแปลถูก:
+          <span :style="modalPercentageColor">
+            {{ modalPercentage }}%
+          </span>
         </section>
         <section v-if="modalPercentageShowOriginal">
           <div style="font-weight:bold">เนื้อเรื่องภาษาสก๊อย:</div>
@@ -131,25 +134,40 @@
     <!-- ABOUT MODAL -->
     <input class="modal-state" ref="aboutModal" type="checkbox" />
     <div class="modal">
-      <div class="modal-bg" @click="toggleModal('aboutModal')"></div>
+      <div class="modal-bg" @click="toggleAboutModal"></div>
       <div class="modal-body border border-6" style="border-color:#41403e">
-        <span class="btn-close" @click="toggleModal('aboutModal')">X</span>
+        <span class="btn-close" @click="toggleAboutModal">X</span>
         <b>สรรค์สร้างความปวดหัวโดย:
           <a href="https://github.com/rootEnginear">rootEnginear</a></b>
         <br />
         <b>Resources:</b>
         <ul style="margin:0;padding-left:1ch">
-          <li><a href="http://www.kalyanamitra.org/th/Aesop_list.php">นิทานอีสปสอนใจ</a>
+          <li>
+            <a href="http://www.kalyanamitra.org/th/Aesop_list.php">นิทานอีสปสอนใจ</a>
           </li>
-          <li><a href="https://www.getpapercss.com/">PaperCSS</a></li>
-          <li><a href="https://fonts.google.com/specimen/Mali">Mali - Google Fonts</a>
+          <li>
+            <a href="https://www.getpapercss.com/">PaperCSS</a>
           </li>
-          <li><a href="https://vuejs.org/">Vue.js</a></li>
-          <li><a href="https://github.com/axios/axios">axios</a></li>
-          <li><a href="https://github.com/narze/toSkoy">toSkoy</a></li>
-          <li><a href="https://github.com/kpdecker/jsdiff">jsdiff</a></li>
-          <li><a href="https://www.freepik.com/free-photos-vectors/background">Background
-              vector created by rawpixel.com</a></li>
+          <li>
+            <a href="https://fonts.google.com/specimen/Mali">Mali - Google Fonts</a>
+          </li>
+          <li>
+            <a href="https://vuejs.org/">Vue.js</a>
+          </li>
+          <li>
+            <a href="https://github.com/axios/axios">axios</a>
+          </li>
+          <li>
+            <a href="https://github.com/narze/toSkoy">toSkoy</a>
+          </li>
+          <li>
+            <a href="https://github.com/kpdecker/jsdiff">jsdiff</a>
+          </li>
+          <li>
+            <a href="https://www.freepik.com/free-photos-vectors/background">
+              Background vector created by rawpixel.com
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -158,7 +176,7 @@
   <!-- Scripts -->
   <script src="toSkoy.js"></script>
   <script src="https://unpkg.com/diff@5.0.0"></script>
-  <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
   <script src="app.js" defer></script>
 </body>
